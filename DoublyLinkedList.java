@@ -1,3 +1,4 @@
-public class DoublyLinkedList {
+public class DoublyLinkedList<E> implements List<E>{
+    
 }
     
