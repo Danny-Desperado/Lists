@@ -53,56 +53,57 @@ public class ArrayList<E> implements List<E>{
     }
     @Override
     public Boolean remove(Object o) {
-        // TODO Auto-generated method stub
-        for(int i = 0; i < size; i++){
-            if(data[i].equals(o)){
-                for(int j = i; j < size - 1; j++){
-                   data[j] = data[j + 1]; 
+        for(int i = 0; i < size; i++)
+        {
+            if(data[i].equals(o))
+            {
+                for(int j = i; j < size - 1; j++)
+                {
+                    data[j] = data[j + 1];
                 }
                 data[size - 1] = null;
                 size--;
                 return true;
             }
         }
+
         return false;
     }
 
     @Override
     public E remove(int index) {
-        if (index > size || index < 0)
+        if(index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Index must be positive and within bounds.");
+        }
 
         E removed = data[index];
 
-        for(int i = index; i < size - 1; i++){
+        for(int i = index; i < size - 1; i++)
+        {
             data[i] = data[i + 1];
         }
 
         data[size - 1] = null;
         size--;
 
-        //Check if it's full 25%
-        if(size > 0 && size < data.length/4) 
-            resize(data.length / 2);
-        
+        if (size > 0 && size < data.length / 4) {
+            resize(data.length / 2);   // half the capacity if size less than 25% is used
+        }
         return removed;
-
-
     }
     @Override
     public String toString() {
+        if(size == 0) return "[]";
+    
         StringBuilder sb = new StringBuilder();
         sb.append("[");
-        for(int i = 0; i < size; i++){
+        for(int i = 0; i < size; i++) {
             sb.append(data[i]);
-            if (i < size - 1)
-                sb.append(", ");
+            if(i < size - 1) sb.append(", "); // comma after every element except last
         }
         sb.append("]");
         return sb.toString();
-        }
-
-    
+    }
     @SuppressWarnings("unchecked")
     @Override
     public void clear(){
