@@ -153,5 +153,23 @@ public class DoublyLinkedList<E> implements List<E>{
     public int size() {
         return size;
     }
+
+    @Override
+    public String toString() {
+        if(size == 0) return "[]";
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+
+        Node temp = head;
+        while(temp != null) {
+            sb.append(temp.data);
+            if(temp.next != null) sb.append(",");
+            temp = temp.next;
+        }
+
+        sb.append("]");
+        return sb.toString();
+    }
     
 }
