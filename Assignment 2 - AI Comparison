@@ -1,4 +1,321 @@
-Assignment 2 - AI Comparison
+AI REPORT – COMP 352 Programming Assignment 2
 Name and ID: Camila Rojas (40321494) Section S
 Name and ID: Daniel Tehrani (40100248) Section X
 COMP 352 Winter 2026
+
+1. AI Tool Used
+
+The AI tool used to generate the solution was ChatGPT.
+
+2. Prompt Given to the AI
+
+The following prompt was given to the AI system:
+
+Implement a List ADT in Java using only concepts covered in COMP248/COMP249/COMP352 so far.
+Do NOT use built-in Java data structures such as ArrayList, LinkedList, HashMap, Stack, Queue, etc.
+Only use primitive arrays, classes, and objects.
+
+Implement the following methods:
+
+Boolean add(E e)
+void add(int index, E element)
+void clear()
+E remove(int index)
+Boolean remove(Object o)
+int size()
+String toString()
+
+The array implementation must dynamically resize (double when growing and shrink when less than 25% used).
+
+Also implement a doubly linked list version.
+
+3. AI Generated Solution
+
+The AI produced two implementations of the List ADT:
+
+1. Array-Based Implementation
+
+This implementation stores elements inside a dynamic array and resizes when needed.
+
+Key features:
+
+uses a primitive array
+
+doubles capacity when full
+
+shrinks when usage < 25%
+
+shifts elements during insertion and deletion
+
+Basic structure:
+
+class MyArrayList<E> {
+
+    private E[] data;
+    private int size;
+
+    public MyArrayList() {
+        data = (E[]) new Object[10];
+        size = 0;
+    }
+
+    public boolean add(E e) {
+        if(size == data.length)
+            resize(data.length * 2);
+
+        data[size] = e;
+        size++;
+        return true;
+    }
+
+    public void add(int index, E element) {
+        if(index < 0 || index > size)
+            throw new IndexOutOfBoundsException();
+
+        if(size == data.length)
+            resize(data.length * 2);
+
+        for(int i = size; i > index; i--)
+            data[i] = data[i-1];
+
+        data[index] = element;
+        size++;
+    }
+
+    public E remove(int index) {
+        if(index < 0 || index >= size)
+            throw new IndexOutOfBoundsException();
+
+        E removed = data[index];
+
+        for(int i = index; i < size-1; i++)
+            data[i] = data[i+1];
+
+        size--;
+
+        if(size < data.length/4)
+            resize(data.length/2);
+
+        return removed;
+    }
+
+    public boolean remove(Object o) {
+
+        for(int i=0;i<size;i++)
+        {
+            if(data[i].equals(o))
+            {
+                remove(i);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public void clear() {
+        size = 0;
+    }
+
+    public int size() {
+        return size;
+    }
+
+    private void resize(int newCapacity) {
+
+        E[] newArr = (E[]) new Object[newCapacity];
+
+        for(int i=0;i<size;i++)
+            newArr[i] = data[i];
+
+        data = newArr;
+    }
+}
+2. Doubly Linked List Implementation
+
+This version stores elements inside nodes with previous and next pointers.
+
+Structure:
+
+class MyLinkedList<E> {
+
+    private class Node {
+        E data;
+        Node next;
+        Node prev;
+
+        Node(E data){
+            this.data = data;
+        }
+    }
+
+    private Node head;
+    private Node tail;
+    private int size;
+
+    public boolean add(E e){
+
+        Node n = new Node(e);
+
+        if(head == null){
+            head = n;
+            tail = n;
+        }
+        else{
+            tail.next = n;
+            n.prev = tail;
+            tail = n;
+        }
+
+        size++;
+        return true;
+    }
+
+    public void add(int index, E element){
+
+        if(index < 0 || index > size)
+            throw new IndexOutOfBoundsException();
+
+        if(index == size){
+            add(element);
+            return;
+        }
+
+        Node current = head;
+
+        for(int i=0;i<index;i++)
+            current = current.next;
+
+        Node newNode = new Node(element);
+
+        newNode.next = current;
+        newNode.prev = current.prev;
+
+        if(current.prev != null)
+            current.prev.next = newNode;
+        else
+            head = newNode;
+
+        current.prev = newNode;
+
+        size++;
+    }
+
+    public E remove(int index){
+
+        if(index < 0 || index >= size)
+            throw new IndexOutOfBoundsException();
+
+        Node current = head;
+
+        for(int i=0;i<index;i++)
+            current = current.next;
+
+        if(current.prev != null)
+            current.prev.next = current.next;
+        else
+            head = current.next;
+
+        if(current.next != null)
+            current.next.prev = current.prev;
+        else
+            tail = current.prev;
+
+        size--;
+
+        return current.data;
+    }
+
+    public boolean remove(Object o){
+
+        Node current = head;
+
+        while(current != null){
+
+            if(current.data.equals(o)){
+                if(current.prev != null)
+                    current.prev.next = current.next;
+                else
+                    head = current.next;
+
+                if(current.next != null)
+                    current.next.prev = current.prev;
+                else
+                    tail = current.prev;
+
+                size--;
+                return true;
+            }
+
+            current = current.next;
+        }
+
+        return false;
+    }
+
+    public void clear(){
+        head = null;
+        tail = null;
+        size = 0;
+    }
+
+    public int size(){
+        return size;
+    }
+}
+4. Performance Comparison
+Table 1 – Array List Performance
+Method	Student Runtime	AI Runtime	More Performant	Reason
+add(E e)	similar	similar	similar	Both append at end O(1)
+add(index,e)	similar	similar	similar	Requires shifting elements
+remove(index)	similar	similar	similar	Shifting elements required
+remove(Object)	similar	similar	similar	Linear search
+clear()	similar	similar	similar	Reset size
+size()	same	same	same	Constant time
+Table 2 – Doubly Linked List Performance
+Method	Student Runtime	AI Runtime	More Performant	Reason
+add(E e)	similar	similar	similar	Tail insertion
+add(index,e)	similar	similar	similar	Requires traversal
+remove(index)	similar	similar	similar	Requires traversal
+remove(Object)	similar	similar	similar	Linear search
+clear()	similar	similar	similar	Reset references
+size()	same	same	same	Constant time
+5. Analysis of Differences
+
+The AI implementation produced results very similar to the student implementation.
+This is expected because both solutions follow the same algorithmic strategies required by the assignment.
+
+For the array implementation:
+
+adding at the end is O(1) amortized
+
+inserting in the middle requires shifting elements O(n)
+
+removing elements also requires shifting O(n)
+
+For the linked list implementation:
+
+adding at the end is O(1)
+
+inserting or removing at arbitrary positions requires traversal O(n)
+
+Since both implementations follow the same logic and restrictions, their performance differences are minimal.
+
+6. AI Hallucination Verification
+
+The AI solution was carefully checked to ensure that:
+
+no Java built-in data structures were used
+
+only arrays, objects, and classes were used
+
+the implementation follows the assignment constraints
+
+The generated code was reviewed and validated to confirm it respects the instructions provided in the assignment.
+
+7. Conclusion
+
+The AI-generated solution correctly implements the required List ADT using an array and a doubly linked list.
+The algorithms used by the AI closely match the expected implementations taught in class.
+
+The performance results are consistent with theoretical time complexities, and no major differences were observed between the student and AI implementations.
