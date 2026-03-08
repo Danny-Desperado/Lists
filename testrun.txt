@@ -1,0 +1,223 @@
+==================================================================================================
+   Performance Comparison: ArrayList vs LinkedList   Performance Comparison: ArrayList vs LinkedList
+==================================================================================================
+
+=================================
+  Testing N = 10  Testing N = 10
+=================================
+
+  ── [MyArrayList] ──
+  ── [MyArrayList] ──
+    Insert @ start  : 0.0320 ms
+    Insert @ end    : 0.0458 ms
+    Insert @ random : 0.0093 ms
+    Remove @ start  : 0.0074 ms
+    Remove @ end    : 0.0030 ms
+    Remove @ random : 0.0065 ms
+    Remove @ value  : 0.0220 ms
+
+  ── [MyLinkedList] ──
+  ── [MyLinkedList] ──
+    Insert @ start  : 0.1759 ms
+    Insert @ end    : 0.0077 ms
+    Insert @ random : 0.0183 ms
+    Remove @ start  : 0.0033 ms
+    Remove @ end    : 0.0023 ms
+    Remove @ random : 0.0048 ms
+    Remove @ value  : 0.0128 ms
+
+  ── [Java ArrayList] ──
+  ── [Java ArrayList] ──
+    Insert @ start  : 0.0091 ms
+    Insert @ end    : 0.0063 ms
+    Insert @ random : 0.0095 ms
+    Remove @ start  : 0.0050 ms
+    Remove @ end    : 0.0022 ms
+    Remove @ random : 0.0045 ms
+    Remove @ value  : 0.0121 ms
+
+  ── [Java LinkedList] ──
+  ── [Java LinkedList] ──
+    Insert @ start  : 0.0352 ms
+    Insert @ end    : 0.0044 ms
+    Insert @ random : 0.0086 ms
+    Remove @ start  : 0.0050 ms
+    Remove @ end    : 0.0032 ms
+    Remove @ random : 0.0052 ms
+    Remove @ value  : 0.0088 ms
+
+==================================
+  Testing N = 100  Testing N = 100
+==================================
+
+  ── [MyArrayList] ──
+  ── [MyArrayList] ──
+    Insert @ start  : 0.0582 ms
+    Insert @ end    : 0.0162 ms
+    Insert @ random : 0.0492 ms
+    Remove @ start  : 0.1125 ms
+    Remove @ end    : 0.0157 ms
+    Remove @ random : 0.0890 ms
+    Remove @ value  : 0.2281 ms
+
+  ── [MyLinkedList] ──
+  ── [MyLinkedList] ──
+    Insert @ start  : 0.0163 ms
+    Insert @ end    : 0.0175 ms
+    Insert @ random : 0.0455 ms
+    Remove @ start  : 0.0065 ms
+    Remove @ end    : 0.0099 ms
+    Remove @ random : 0.0519 ms
+    Remove @ value  : 0.1552 ms
+
+  ── [Java ArrayList] ──
+  ── [Java ArrayList] ──
+    Insert @ start  : 0.0334 ms
+    Insert @ end    : 0.0065 ms
+    Insert @ random : 0.0352 ms
+    Remove @ start  : 0.0270 ms
+    Remove @ end    : 0.0366 ms
+    Remove @ random : 0.0335 ms
+    Remove @ value  : 0.1576 ms
+
+  ── [Java LinkedList] ──
+  ── [Java LinkedList] ──
+    Insert @ start  : 0.0283 ms
+    Insert @ end    : 0.0234 ms
+    Insert @ random : 0.0519 ms
+    Remove @ start  : 0.0214 ms
+    Remove @ end    : 0.0205 ms
+    Remove @ random : 0.0294 ms
+    Remove @ value  : 0.1805 ms
+
+=====================================
+  Testing N = 1000  Testing N = 1000
+=====================================
+
+  ── [MyArrayList] ──
+  ── [MyArrayList] ──
+    Insert @ start  : 0.9402 ms
+    Insert @ end    : 0.1373 ms
+    Insert @ random : 0.5972 ms
+    Remove @ start  : 2.0434 ms
+    Remove @ end    : 0.0454 ms
+    Remove @ random : 1.1778 ms
+    Remove @ value  : 4.0862 ms
+
+  ── [MyLinkedList] ──
+  ── [MyLinkedList] ──
+    Insert @ start  : 0.1220 ms
+    Insert @ end    : 0.0587 ms
+    Insert @ random : 0.7795 ms
+    Remove @ start  : 0.0195 ms
+    Remove @ end    : 0.0333 ms
+    Remove @ random : 0.6242 ms
+    Remove @ value  : 3.0469 ms
+
+  ── [Java ArrayList] ──
+  ── [Java ArrayList] ──
+    Insert @ start  : 0.4086 ms
+    Insert @ end    : 0.0533 ms
+    Insert @ random : 0.1393 ms
+    Remove @ start  : 0.4525 ms
+    Remove @ end    : 0.0480 ms
+    Remove @ random : 0.1068 ms
+    Remove @ value  : 3.3370 ms
+
+  ── [Java LinkedList] ──
+  ── [Java LinkedList] ──
+    Insert @ start  : 0.1982 ms
+    Insert @ end    : 0.0583 ms
+    Insert @ random : 0.3779 ms
+    Remove @ start  : 0.0332 ms
+    Remove @ end    : 0.0439 ms
+    Remove @ random : 0.3342 ms
+    Remove @ value  : 3.1575 ms
+
+=======================================
+  Testing N = 10000  Testing N = 10000
+=======================================
+
+  ── [MyArrayList] ──
+  ── [MyArrayList] ──
+    Insert @ start  : 27.4463 ms
+    Insert @ end    : 0.5318 ms
+    Insert @ random : 29.9422 ms
+    Remove @ start  : 63.1361 ms
+    Remove @ end    : 0.3047 ms
+    Remove @ random : 31.3935 ms
+    Remove @ value  : 54.8146 ms
+
+  ── [MyLinkedList] ──
+  ── [MyLinkedList] ──
+    Insert @ start  : 0.1825 ms
+    Insert @ end    : 0.2265 ms
+    Insert @ random : 114.0759 ms
+    Remove @ start  : 0.1161 ms
+    Remove @ end    : 0.0957 ms
+    Remove @ random : 46.8245 ms
+    Remove @ value  : 146.0667 ms
+
+  ── [Java ArrayList] ──
+  ── [Java ArrayList] ──
+    Insert @ start  : 4.4676 ms
+    Insert @ end    : 0.5397 ms
+    Insert @ random : 3.1550 ms
+    Remove @ start  : 4.3376 ms
+    Remove @ end    : 0.3109 ms
+    Remove @ random : 2.7365 ms
+    Remove @ value  : 42.7797 ms
+
+  ── [Java LinkedList] ──
+  ── [Java LinkedList] ──
+    Insert @ start  : 0.3100 ms
+    Insert @ end    : 0.2246 ms
+    Insert @ random : 48.5183 ms
+    Remove @ start  : 0.1810 ms
+    Remove @ end    : 0.1650 ms
+    Remove @ random : 24.8351 ms
+    Remove @ value  : 142.6516 ms
+
+=========================================
+  Testing N = 100000  Testing N = 100000
+=========================================
+
+  ── [MyArrayList] ──
+  ── [MyArrayList] ──
+    Insert @ start  : 2674.2817 ms
+    Insert @ end    : 4.6600 ms
+    Insert @ random : 4220.1994 ms
+    Remove @ start  : 6753.0821 ms
+    Remove @ end    : 0.9167 ms
+    Remove @ random : 3729.7321 ms
+    Remove @ value  : 5821.0770 ms
+
+  ── [MyLinkedList] ──
+  ── [MyLinkedList] ──
+    Insert @ start  : 1.2509 ms
+    Insert @ end    : 1.1567 ms
+    Insert @ random : 16638.6478 ms
+    Remove @ start  : 0.3655 ms
+    Remove @ end    : 0.3514 ms
+    Remove @ random : 4848.4493 ms
+    Remove @ value  : 33906.7589 ms
+
+  ── [Java ArrayList] ──
+  ── [Java ArrayList] ──
+    Insert @ start  : 454.1690 ms
+    Insert @ end    : 4.6066 ms
+    Insert @ random : 231.8535 ms
+    Remove @ start  : 455.5324 ms
+    Remove @ end    : 0.7745 ms
+    Remove @ random : 220.4718 ms
+    Remove @ value  : 3486.5645 ms
+
+  ── [Java LinkedList] ──
+  ── [Java LinkedList] ──
+    Insert @ start  : 1.1993 ms
+    Insert @ end    : 1.0863 ms
+    Insert @ random : 7840.6249 ms
+    Remove @ start  : 0.4329 ms
+    Remove @ end    : 0.4488 ms
+    Remove @ random : 2507.7485 ms
+    Remove @ value  : 12864.8628 ms
