@@ -27,12 +27,11 @@ public class DoublyLinkedList<E> implements List<E>{
         Node current = new Node(e);
         if(head == null) {
             head = tail = current;
-            size++;
-            return true;
+        } else {
+            current.prev = tail;
+            tail.next = current;
+            tail = current;
         }
-        current.prev = tail;
-        tail.next = current;
-        tail = current;
         size++;
         return true;
     }
