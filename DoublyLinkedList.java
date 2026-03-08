@@ -24,33 +24,134 @@ public class DoublyLinkedList<E> implements List<E>{
 
     @Override
     public Boolean add(E e) {
-        throw new UnsupportedOperationException("Unimplemented method 'add'");
+        Node current = new Node(e);
+        if(head == null) {
+            head = tail = current;
+            size++;
+            return true;
+        }
+        current.prev = tail;
+        tail.next = current;
+        tail = current;
+        size++;
+        return true;
     }
 
-    @Override
+        @Override
     public void add(int index, E element) {
-        throw new UnsupportedOperationException("Unimplemented method 'add'");
+        if(index < 0) {
+            throw new IndexOutOfBoundsException("Index cannot be negative");
+        }
+    
+        if(index >= size) {
+            add(element);
+            return;
+        }
+    
+        if(index == 0) {
+            Node current = new Node(element);
+            current.next = head;
+            head.prev = current;
+            head = current;
+            size++;
+            return;
+        }
+    
+        Node current = new Node(element);
+        Node temp = head;
+        for(int i = 0; i < index; i++) {
+            temp = temp.next;
+        }
+    
+        current.prev = temp.prev;
+        current.next = temp;
+        temp.prev.next = current;
+        temp.prev = current;
+        size++;
     }
 
     @Override
     public void clear() {
-        throw new UnsupportedOperationException("Unimplemented method 'clear'");
+        head = null;
+        tail = null;
+        size = 0;
     }
 
-    @Override
+        @Override
     public E remove(int index) {
-        throw new UnsupportedOperationException("Unimplemented method 'remove'");
+        if(index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index out of bounds");
+        }
+    
+        if(index == 0) {
+            E removed = head.data;
+            head = head.next;
+            if(head != null)
+                head.prev = null;
+            else
+                tail = null;
+            size--;
+            return removed;
+        }
+    
+        if(index == size - 1) {
+            E removed = tail.data;
+            tail = tail.prev;
+            if(tail != null)
+                tail.next = null;
+            else
+                head = null;
+            size--;
+            return removed;
+        }
+    
+        Node temp = head;
+        for(int i = 0; i < index; i++) {
+            temp = temp.next;
+        }
+        E removed = temp.data;
+        temp.prev.next = temp.next;
+        temp.next.prev = temp.prev;
+        size--;
+        return removed;
     }
 
-    @Override
+        @Override
     public Boolean remove(Object o) {
-        throw new UnsupportedOperationException("Unimplemented method 'remove'");
+        Node temp = head;
+    
+        while(temp != null) {
+            if(temp.data.equals(o)) {
+    
+                if(temp == head && temp == tail) {
+                    head = null;
+                    tail = null;
+    
+                } else if(temp == head) {
+                    head = head.next;
+                    head.prev = null;
+    
+                } else if(temp == tail) {
+                    tail = tail.prev;
+                    tail.next = null;
+    
+                } else {
+                    temp.prev.next = temp.next;
+                    temp.next.prev = temp.prev;
+                }
+    
+                size--;
+                return true;
+            }
+            temp = temp.next;
+        }
+    
+        return false;
     }
 
     @Override
     public int size() {
-        throw new UnsupportedOperationException("Unimplemented method 'size'");
+        return size;
     }
     
 }
-    
